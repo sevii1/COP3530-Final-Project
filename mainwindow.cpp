@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include <string>
 
 using namespace std;
 
@@ -24,9 +25,9 @@ void MainWindow::on_searchButton_clicked()
     //this is just temporary. Used for testing parsing and all that until the other two
     //finish their structures
     vector<Movie> movieList;
-    movieList.push_back({"The Empire Strikes Back", 1980, 124, {"Action", "Adventure", "Fantasy"}, 8.7f});
-    movieList.push_back({"Look Back in Anger", 1985, 127, {"Fantasy"}, 8.7f});
-    movieList.push_back({"A New Hope", 1979, 123, {"Action", "Adventure", "Fantasy"}, 7.8f});
+    movieList.push_back({"The Empire Strikes Back", 1980, 124, {"Action", "Adventure", "Fantasy"}, 8.7});
+    movieList.push_back({"Look Back in Anger", 1985, 127, {"Fantasy"}, 8.7});
+    movieList.push_back({"A New Hope", 1979, 123, {"Action", "Adventure", "Fantasy"}, 7.8});
 
     //was previously used for a test label to make sure I was reading user input correctly
     /*ui->testLabel->setText("The test was successful!"
@@ -164,11 +165,16 @@ void MainWindow::printMovies(vector<Movie> movies, int index) {
             //have to create new labels for these programatically because Qt is weird and LAME!!!
             //(it actually makes perfect sense I'm just tired and this took me a while to figure out sorry qt I love you I'll never insult you again)
             QLabel *tempLabel = new QLabel;
+            string genres = movies[index].genre[0];
+            for (int i = 1; i < movies[index].genre.size(); i++) {
+                genres += (", " + movies[index].genre[i]);
+            }
             //set the label to all the info in the movie...
             tempLabel->setText("Title: " + QString::fromStdString(movies[index].title) +
                                "\nRelease Year: " + QVariant(movies[index].year).toString() +
                                "\nRating: " + QVariant(movies[index].rating).toString() +
-                               "\nRuntime: " + QVariant(movies[index].runtime).toString() + "minutes");
+                               "\nRuntime: " + QVariant(movies[index].runtime).toString() + " minutes" +
+                               "\nGenres: " + QString::fromStdString(genres));
             //...align it to the top...
             tempLabel->setAlignment(Qt::AlignTop);
             //...and then add it to the widget I made for the movie list

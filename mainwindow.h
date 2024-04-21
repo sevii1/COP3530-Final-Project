@@ -16,7 +16,7 @@ struct Movie {
     int year;
     int runtime;
     vector<string> genre;
-    float rating;
+    double rating;
 };
 
 class MainWindow : public QMainWindow
