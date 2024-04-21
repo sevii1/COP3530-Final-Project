@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="searchButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>420</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Gill Sans Ultra Bold</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Search!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="testLabel">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>20</y>
+      <width>201</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="text">
+     <string>This is a test</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>130</y>
+      <width>141</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>1900</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1910</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1920</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1930</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1940</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1950</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1960</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1970</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1980</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1990</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2000</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2010</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2020</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="decade_label">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>100</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Release Decade</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="genre_label">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>170</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Genre</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>200</y>
+      <width>141</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Action</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Drama</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fantasy</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Comedy</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Romance</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Adventure</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Animation</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mystery</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Horror</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Thriller</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sci-Fi</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Family</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Western</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Biography</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Documentary</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>War</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sport</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Music</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Crime</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="top_label">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>60</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Showcard Gothic</family>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Top Movies</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="minRuntime">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>290</y>
+      <width>51</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="maxRuntime">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>290</y>
+      <width>51</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>240</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Runtime</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>270</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Minimum</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>270</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Maximum</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="top_label_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>60</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Showcard Gothic</family>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Search Movies</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>320</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>IMDB Rating</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="maxRating">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>370</y>
+      <width>51</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>350</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Maximum</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>350</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Minimum</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="minRating">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>370</y>
+      <width>51</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="maxLength">
+     <number>4</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>100</y>
+      <width>231</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="MovieBox"/>
+   </widget>
+   <widget class="QLabel" name="RuntimeErrorLabel">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>290</y>
+      <width>251</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="RatingErrorLabel">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>370</y>
+      <width>271</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>250</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(1-9999, minutes)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>330</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(1.0,10.0)</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>17</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
