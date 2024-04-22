@@ -2,6 +2,7 @@
 #define FILEPICK_H
 
 #include <QDialog>
+#pragma once
 
 namespace Ui {
 class FilePick;

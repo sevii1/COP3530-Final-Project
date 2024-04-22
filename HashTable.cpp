@@ -1,41 +1,42 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
-#include <unordered_map>
-#include <vector>
-#include <locale>
-#include <algorithm>
+#include <list>
+#include "HashTable.h"
 
-struct Movie {
-    std::string originalTitle;
-    int startYear = 0;
-    int runtimeMinutes = 0;
-    std::vector<std::string> genres;
-    float averageRating = 0.0;
-};
-
-// Helper functions to handle conversions safely
-int safeStoi(const std::string& str, int defaultVal = 0) {
-    try {
-        return std::stoi(str);
-    } catch (...) {
-        return defaultVal;
-    }
+HashTable::HashTable(){
+    cap = 150000;
+    table = new std::list<Movie>[cap];
 }
 
-float safeStof(const std::string& str, float defaultVal = 0.0f) {
-    try {
-        return std::stof(str);
-    } catch (...) {
-        return defaultVal;
-    }
+HashTable::~HashTable(){
+    delete table;
 }
 
+int HashTable::hashFunction(Movie in) {
+    int key = 0;
+    for (int i = 0; i < in.title.length(); i++) {
+        char letter = in.title.at(i);
+        key = (key * 2) + int(letter);
+    }
+    key += in.year + int(in.rating * 10);
+    int modKey = abs(key % cap);
+    return modKey;
+}
+
+void HashTable::insert(Movie val) {
+    int key = hashFunction(val);
+    table[key].push_back(val);
+}
+
+int HashTable::getCap(){
+    return cap;
+}
+
+//former hash table function, all of this was either scrapped or reworked
+/*
+ * used in mainwindow.cpp
 std::unordered_map<std::string, Movie> loadMovies(const std::string& filename) {
     std::locale::global(std::locale("C"));  // Ensure correct numeric formatting
     std::ifstream file(filename);
-    std::unordered_map<std::string, Movie> movies;
     std::string line, word;
 
     if (!file.is_open()) {
@@ -70,8 +71,10 @@ std::unordered_map<std::string, Movie> loadMovies(const std::string& filename) {
 
     file.close();
     return movies;
+
 }
 
+ * goes completely unused
 int main() {
     std::string filename = "Project3DatabaseMOVIESONLY.csv";  // Adjust the path as necessary
     auto movies = loadMovies(filename);
@@ -107,4 +110,4 @@ int main() {
     }
 
     return 0;
-}
+}*/
