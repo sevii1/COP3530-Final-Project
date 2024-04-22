@@ -250,6 +250,13 @@ bool MainWindow::checkRating(float rating) {
     return false;
 }
 
+//truncates down to one decimal
+double truncate(double rating) {
+    int i = rating * 10;
+    double trunc = (double)i / 10;
+    return trunc;
+}
+
 //YEAAAAAH this is the one where the fun stuff happens
 //sorry my comments are getting increasingly more unhinged I am very tired right now
 void MainWindow::printMovies(vector<Movie> movies, int index) {
@@ -277,7 +284,7 @@ void MainWindow::printMovies(vector<Movie> movies, int index) {
             //set the label to all the info in the movie...
             tempLabel->setText("Title: " + QString::fromStdString(movies[index].title) +
                                "\nRelease Year: " + QVariant(movies[index].year).toString() +
-                               "\nRating: " + QVariant(movies[index].rating).toString() +
+                               "\nRating: " + (QVariant(truncate(movies[index].rating))).toString() + "/10" +
                                "\nRuntime: " + QVariant(movies[index].runtime).toString() + " minutes" +
                                "\nGenres: " + QString::fromStdString(genres));
             //...align it to the top...
