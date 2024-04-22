@@ -44,15 +44,10 @@ public:
     TreeNode* rotateLeft(TreeNode* node);
     TreeNode* rotateRight(TreeNode* node);
 
+    bool validMovie(TreeNode* node, int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating);
 
-
-    TreeNode* searchID(TreeNode* root, int key);
-
-    void searchNAME(TreeNode* root, string title);
-    bool SearchPreOrder(TreeNode* root, string title);
-
-    void printInOrder();
-    void inOrder(TreeNode* head, bool& x);
+    vector<Movie> printInOrder(int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating);
+    void inOrder(TreeNode* head, int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating, vector<Movie> &movList);
 
     TreeNode* getRoot() const;
 

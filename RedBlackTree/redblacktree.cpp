@@ -196,58 +196,50 @@ RBT::TreeNode* RBT::rotateRight(TreeNode* node) {
     return newParent;
 }
 
-
-
-
-
-
-RBT::TreeNode* RBT::searchID(TreeNode* root, int key) {
-    if (root == nullptr) {
-        return nullptr;
-    }
-    if (root->ID == key) {
-
-        return root;
-    }
-    if (key < root->ID) {
-        return searchID(root->left, key);
-    }
-    else {
-        return searchID(root->right, key);
-    }
-    return root;
-}
-
-void RBT::searchNAME(TreeNode* root, string title) {
-    if (!SearchPreOrder(root, title)) {
-        cout << "unsuccessful" << endl;
-    }
-}
-bool RBT::SearchPreOrder(TreeNode* node, string title) {
-    if (node == nullptr) {
+bool RBT::validMovie(TreeNode* node, int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating){
+    //Check decade
+    if(node->MOVIE.year < dec or node->MOVIE.year > dec + 9) {
         return false;
     }
-    if (node->NAME == title) {
-        cout << node->ID << endl;
-        return true | SearchPreOrder(node->left, title) | SearchPreOrder(node->right, title);
+    //Then check runtime
+    if(node->MOVIE.runtime < minRuntime or node->MOVIE.runtime > maxRuntime) {
+        return false;
     }
-    return SearchPreOrder(node->left, title) | SearchPreOrder(node->right, title);
+    //and then genre
+    bool isGenre = false;
+    for(int i = 0; i < node->MOVIE.genre.size(); i++){
+        if(node->MOVIE.genre[i] == genre){
+            isGenre = true;
+        }
+    }
+    if (!isGenre) {
+        return false;
+    }
+    //and finally rating
+    if(node->MOVIE.rating < minRating or node->MOVIE.rating > maxRating) {
+        return false;
+    }
+    //if it makes it past all these checks, return true
+    return true;
 }
 
-
-void RBT::printInOrder() {
-    bool first = true;
-
-    inOrder(root, first);
-    cout << endl;
+vector<Movie> RBT::printInOrder(int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating) {
+    vector<Movie> foundMovies;
+    inOrder(root, dec, minRuntime, maxRuntime, genre, minRating, maxRating, foundMovies);
+    return foundMovies;
 }
-void RBT::inOrder(TreeNode* head, bool& isFirst) {
+void RBT::inOrder(TreeNode* head, int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating, vector<Movie> &movList) {
     if (head == nullptr) {
         return;
     }
 
-    inOrder(head->left, isFirst);
+    inOrder(head->left, dec, minRuntime, maxRuntime, genre, minRating, maxRating, movList);
 
+    if(validMovie(head, dec, minRuntime, maxRuntime, genre, minRating, maxRating)) {
+        movList.push_back(head->MOVIE);
+    }
+
+    /*
     if (isFirst) {
 
         cout << head->NAME << ": ";
@@ -267,9 +259,9 @@ void RBT::inOrder(TreeNode* head, bool& isFirst) {
         else if (head->color == 1) {
             cout << "Red";
         }
-    }
+    }*/
 
-    inOrder(head->right, isFirst);
+    inOrder(head->right, dec, minRuntime, maxRuntime, genre, minRating, maxRating, movList);
 }
 
 RBT::TreeNode* RBT::getRoot() const {

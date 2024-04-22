@@ -47,7 +47,7 @@ float safeStof(const std::string& str, float defaultVal = 0.0f) {
 
 string getKey(string name, int year) {
     string key = to_string(year);
-    for(int i = 0; i < name.length(); i++) {
+    for(int i = 0; i < 6; i++) {
         char letter = name.at(i);
         key += to_string(int(letter));
     }
@@ -67,6 +67,7 @@ void MainWindow::initialize() {
 
     std::getline(file, line);  // Skip the header line
 
+    int iter = 0;
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         Movie movie;
@@ -96,8 +97,9 @@ void MainWindow::initialize() {
         if(isHash) {
             movieTable.insert(movie);  // Use primary title as key
         } else {
-            movieTree.insert(movie, getKey(movie.title, movie.year));
+            movieTree.insert(movie, to_string(iter));
         }
+        iter++;
     }
 
     file.close();
@@ -166,6 +168,8 @@ void MainWindow::on_searchButton_clicked()
                     }
                 }
             }
+        } else {
+            foundList = movieTree.printInOrder(ui->comboBox->currentText().toInt(), ui->minRuntime->displayText().toInt(), ui->maxRuntime->displayText().toInt(), ui->comboBox_2->currentText().toStdString(), ui->minRating->displayText().toDouble(), ui->maxRating->displayText().toDouble());
         }
         //set index to 0 here instead of in function because I think I'm gonna try to make separate pages soon so I need to do it out of the function
         //I think
