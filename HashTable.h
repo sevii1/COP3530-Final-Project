@@ -22,6 +22,6 @@ private:
 public:
     HashTable();
     ~HashTable();
-    int hashFunction(Movie key);
+    int hashFunction(Movie in);
     void insert(Movie val);
 };

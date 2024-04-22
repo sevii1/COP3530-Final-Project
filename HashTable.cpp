@@ -24,7 +24,7 @@ float safeStof(const std::string& str, float defaultVal = 0.0f) {
 }
 
 HashTable::HashTable(){
-    cap = 150000;
+    cap = 200000;
     table = new std::list<Movie>[cap];
 }
 
@@ -32,8 +32,13 @@ HashTable::~HashTable(){
     delete table;
 }
 
-int HashTable::hashFunction(Movie key) {
-
+int HashTable::hashFunction(Movie in) {
+    int key = 0;
+    int iter = 0;
+    while (iter < 3) {
+        char ascii = in.title.at(in.title.size()-iter);
+        key = int(ascii) * (31^iter) + in.runtime;
+    }
 }
 
 void HashTable::insert(Movie val) {
