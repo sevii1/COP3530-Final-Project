@@ -26,7 +26,7 @@
     <string>Select structure to use:</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="HM">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -39,7 +39,7 @@
     <string>Hash Map</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="BT">
    <property name="geometry">
     <rect>
      <x>230</x>

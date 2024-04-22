@@ -473,7 +473,7 @@
      </rect>
     </property>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="RatingErrorLabel">
@@ -486,7 +486,7 @@
      </rect>
     </property>
     <property name="text">
-     <string> </string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -515,6 +515,19 @@
      <string>(1.0,10.0)</string>
     </property>
    </widget>
+   <widget class="QLabel" name="structureUsed">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>291</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Using Structure: </string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -522,7 +535,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -24,7 +24,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr, bool h = true);
     ~MainWindow();
     bool validateInput();
     bool checkMovie(Movie movie);
@@ -36,9 +36,11 @@ public:
 
 private slots:
 
+    void showEvent(QShowEvent *ev);
     void on_searchButton_clicked();
 
 private:
     Ui::MainWindow *ui;
+    bool isHash;
 };
 #endif // MAINWINDOW_H

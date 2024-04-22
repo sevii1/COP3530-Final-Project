@@ -1,16 +1,18 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "filepick.h"
 #include <string>
 
 using namespace std;
 
 
 //default constructor and destructor were created with template
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent, bool h)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    isHash = h;
 }
 
 MainWindow::~MainWindow()
@@ -19,9 +21,24 @@ MainWindow::~MainWindow()
 }
 
 
+//this function runs once the main window is open
+void MainWindow::showEvent(QShowEvent *ev) {
+    FilePick f;
+    f.exec();
+    //initializes based on what structure it's using
+    if(isHash) {
+        ui->structureUsed->setText("Structure in use: Hash Map");
+    } else {
+        ui->structureUsed->setText("Structure in use: B Tree");
+    }
+}
+
 //activates whenever search button is clicked
 void MainWindow::on_searchButton_clicked()
 {
+
+
+
     //this is just temporary. Used for testing parsing and all that until the other two
     //finish their structures
     vector<Movie> movieList;

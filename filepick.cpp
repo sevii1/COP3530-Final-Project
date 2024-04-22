@@ -12,3 +12,16 @@ FilePick::~FilePick()
 {
     delete ui;
 }
+
+
+bool FilePick::on_HM_clicked()
+{
+    return true;
+}
+
+
+bool FilePick::on_BT_clicked()
+{
+    return false;
+}
+
