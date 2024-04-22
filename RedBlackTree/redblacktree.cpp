@@ -7,22 +7,16 @@ RBT::RBT() {
     root = nullptr;
 }
 
-void RBT::insert(Movie movie, string id) {
-
     if (root == nullptr) {
         root = new TreeNode(movie, stoi(id), nullptr);
         root->color = 0;
     }
     else {
-
         insertHELPER(root, movie, stoi(id), nullptr, 0);
-
-
     }
-
 }
-RBT::TreeNode* RBT::insertHELPER(TreeNode* node, Movie mov, int key, TreeNode* parent, int dir) { //first node is root
 
+RBT::TreeNode* RBT::insertHELPER(TreeNode* node, Movie mov, int key, TreeNode* parent, int dir) { //first node is root
 
     if (node == nullptr) {
         //cout << "new node blue blood" << endl;
@@ -37,7 +31,6 @@ RBT::TreeNode* RBT::insertHELPER(TreeNode* node, Movie mov, int key, TreeNode* p
         rbtbalancing(NewNode);
         return NewNode;
     }
-
     if (key < node->ID) {
 
         insertHELPER(node->left, mov, key, node, 1);
@@ -47,31 +40,22 @@ RBT::TreeNode* RBT::insertHELPER(TreeNode* node, Movie mov, int key, TreeNode* p
     else {
 
         insertHELPER(node->right, mov, key, node, 2);
-
     }
-
     return node;
 }
 
-RBT::TreeNode* RBT::rbtbalancing(TreeNode* node) { //first node is root
-
+RBT::TreeNode* RBT::rbtbalancing(TreeNode* node) {
     if (node->parent == nullptr) {
-
         node->color = 0;
         return node;
     }
-
     if (node->parent->color == 0) {
-
         return node;
     }
     TreeNode* parent = node->parent;
     TreeNode* grandparent = RBTreeGetGrandparent(node);
     TreeNode* uncle = RBTreeGetUnc(node);
-
-    if (uncle != nullptr && uncle->color == 1) { // if uncle is red, flip colors
-
-
+    if (uncle != nullptr && uncle->color == 1) { 
         parent->color = 0;
         uncle->color = 0;
         grandparent->color = 1;
@@ -79,35 +63,23 @@ RBT::TreeNode* RBT::rbtbalancing(TreeNode* node) { //first node is root
         return node;
     }
     if (node == parent->right && parent == grandparent->left) {
-
-
         rotateLeft(parent);
         node = parent;
         parent = node->parent;
     }
     else if (node == parent->left && parent == grandparent->right) {
-
-
         rotateRight(parent);
         node = parent;
         parent = node->parent;
     }
     parent->color = 0;
     grandparent->color = 1;
-    //cout <<grandparent->NAME << endl;
     if (node == parent->left) {
-
-
         TreeNode* temp = rotateRight(grandparent);
-
         return temp;
-    }
-    else {
-
-
+    }else{
         return rotateLeft(grandparent);
     }
-
 }
 
 RBT::TreeNode* RBT::RBTreeGetGrandparent(TreeNode* node) {
@@ -116,34 +88,28 @@ RBT::TreeNode* RBT::RBTreeGetGrandparent(TreeNode* node) {
     }
     return nullptr;
 }
+
 RBT::TreeNode* RBT::RBTreeGetUnc(TreeNode* node) {
     TreeNode* grandparent = RBTreeGetGrandparent(node);
     if (grandparent != nullptr) {
         if (node->parent == grandparent->left) {
             return grandparent->right;
-        }
-        else {
+        }else{
             return grandparent->left;
         }
     }
     return nullptr;
 }
 
-
-
-
-
 RBT::TreeNode* RBT::rotateLeft(TreeNode* node) {
     TreeNode* newParent = node->right;
     TreeNode* grandchild = newParent->left;
     newParent->left = node;
     node->right = grandchild;
-
     if (grandchild != nullptr) {
         grandchild->parent = node;
     }
     newParent->parent = node->parent;
-
     if (node->parent == nullptr) {
         root = newParent;
         root->color = 0;
@@ -157,26 +123,19 @@ RBT::TreeNode* RBT::rotateLeft(TreeNode* node) {
         newParent->color = node->parent->color;
     }
     node->parent = newParent;
-
     node->color = 1;
-
     return newParent;
 }
-
-
 
 RBT::TreeNode* RBT::rotateRight(TreeNode* node) {
     TreeNode* newParent = node->left;
     TreeNode* grandchild = newParent->right;
     newParent->right = node;
     node->left = grandchild;
-
-
     if (grandchild != nullptr) {
         grandchild->parent = node;
     }
     newParent->parent = node->parent;
-
     if (node->parent == nullptr) {
         root = newParent;
         root->color = 0;
@@ -190,23 +149,15 @@ RBT::TreeNode* RBT::rotateRight(TreeNode* node) {
         newParent->color = node->parent->color;
     }
     node->parent = newParent;
-
     node->color = 1;
-
     return newParent;
 }
-
-
-
-
-
 
 RBT::TreeNode* RBT::searchID(TreeNode* root, int key) {
     if (root == nullptr) {
         return nullptr;
     }
     if (root->ID == key) {
-
         return root;
     }
     if (key < root->ID) {
@@ -234,22 +185,18 @@ bool RBT::SearchPreOrder(TreeNode* node, string title) {
     return SearchPreOrder(node->left, title) | SearchPreOrder(node->right, title);
 }
 
-
 void RBT::printInOrder() {
     bool first = true;
-
     inOrder(root, first);
     cout << endl;
 }
+
 void RBT::inOrder(TreeNode* head, bool& isFirst) {
     if (head == nullptr) {
         return;
     }
-
     inOrder(head->left, isFirst);
-
     if (isFirst) {
-
         cout << head->NAME << ": ";
         if (head->color == 0) {
             cout << "Black";
@@ -268,7 +215,6 @@ void RBT::inOrder(TreeNode* head, bool& isFirst) {
             cout << "Red";
         }
     }
-
     inOrder(head->right, isFirst);
 }
 

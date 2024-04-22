@@ -11,30 +11,31 @@ public:
         int ID;
         int height;
 
-        Movie MOVIE;
+        Movie movie;
+
+        
 
         int color; //1 = red, 0 = black
 
         TreeNode* parent;
-        TreeNode* grandparent;
-        TreeNode* uncle;
 
         TreeNode* left;
         TreeNode* right;
 
-        TreeNode(Movie movie, int gatorid, TreeNode* parent) {
 
-            MOVIE  = movie;
-            ID = gatorid;
+        TreeNode(Movie movie, int ID, TreeNode* parent) {
+
+            this->movie = movie;
+            ID = ID;
+            this->parent = parent;
 
             left = nullptr;
             right = nullptr;
 
-            this->parent = parent;
-
             color = 1; //1 = red, 0 = black
         }
     };
+
     RBT();
 
     void insert(Movie movie, string id);
@@ -44,7 +45,8 @@ public:
     TreeNode* rotateLeft(TreeNode* node);
     TreeNode* rotateRight(TreeNode* node);
 
-
+    TreeNode* RBTreeGetGrandparent(TreeNode* node);
+    TreeNode* RBTreeGetUnc(TreeNode* node);
 
     TreeNode* searchID(TreeNode* root, int key);
 
@@ -56,13 +58,8 @@ public:
 
     TreeNode* getRoot() const;
 
-    TreeNode* RBTreeGetGrandparent(TreeNode* node);
-
-    TreeNode* RBTreeGetUnc(TreeNode* node);
-
-
-
 private:
+
     TreeNode* root;
 
 };
