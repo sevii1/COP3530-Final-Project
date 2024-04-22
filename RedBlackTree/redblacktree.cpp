@@ -7,26 +7,26 @@ RBT::RBT() {
     root = nullptr;
 }
 
-void RBT::insert(string name, string id) {
+void RBT::insert(Movie movie, string id) {
 
     if (root == nullptr) {
-        root = new TreeNode(name, stoi(id), nullptr);
+        root = new TreeNode(movie, stoi(id), nullptr);
         root->color = 0;
     }
     else {
 
-        insertHELPER(root, name, stoi(id), nullptr, 0);
+        insertHELPER(root, movie, stoi(id), nullptr, 0);
 
 
     }
 
 }
-RBT::TreeNode* RBT::insertHELPER(TreeNode* node, string nombre, int key, TreeNode* parent, int dir) { //first node is root
+RBT::TreeNode* RBT::insertHELPER(TreeNode* node, Movie mov, int key, TreeNode* parent, int dir) { //first node is root
 
 
     if (node == nullptr) {
         //cout << "new node blue blood" << endl;
-        TreeNode* NewNode = new TreeNode(nombre, key, parent);
+        TreeNode* NewNode = new TreeNode(mov, key, parent);
         NewNode->parent = parent;
         if (dir == 1) {
             parent->left = NewNode;
@@ -40,13 +40,13 @@ RBT::TreeNode* RBT::insertHELPER(TreeNode* node, string nombre, int key, TreeNod
 
     if (key < node->ID) {
 
-        insertHELPER(node->left, nombre, key, node, 1);
+        insertHELPER(node->left, mov, key, node, 1);
 
 
     }
     else {
 
-        insertHELPER(node->right, nombre, key, node, 2);
+        insertHELPER(node->right, mov, key, node, 2);
 
     }
 

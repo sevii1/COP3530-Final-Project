@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "HashTable.h"
+#include "RedBlackTree/redblacktree.h"
 
 #pragma once
 
@@ -21,7 +22,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr, bool h = true);
     ~MainWindow();
-    void initializeTable();
+    void initialize();
     bool validateInput();
     bool checkMovie(Movie movie);
     bool checkDecade(int year);
@@ -39,5 +40,6 @@ private:
     Ui::MainWindow *ui;
     bool isHash;
     HashTable movieTable;
+    RBT movieTree;
 };
 #endif // MAINWINDOW_H

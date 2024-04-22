@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "HashTable.h"
+#include "RedBlackTree/redblacktree.h"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -44,8 +45,16 @@ float safeStof(const std::string& str, float defaultVal = 0.0f) {
     }
 }
 
+string getKey(string name, int year) {
+    string key = to_string(year);
+    for(int i = 0; i < name.length(); i++) {
+        char letter = name.at(i);
+        key += to_string(int(letter));
+    }
+    return key;
+}
 
-void MainWindow::initializeTable() {
+void MainWindow::initialize() {
     //This function was primarily written by Waleed, minorly tweaked by Maddy to make it work with UI
     std::locale::global(std::locale("C"));  // Ensure correct numeric formatting
     string filename = R"(C:\Users\1upjl\OneDrive\Documents\DSA Project 3\untitled\Project3DatabaseMOVIESONLY.csv)";
@@ -84,7 +93,11 @@ void MainWindow::initializeTable() {
             movie.genre.push_back(word);
         }
 
-        movieTable.insert(movie);  // Use primary title as key
+        if(isHash) {
+            movieTable.insert(movie);  // Use primary title as key
+        } else {
+            movieTree.insert(movie, getKey(movie.title, movie.year));
+        }
     }
 
     file.close();
@@ -96,9 +109,10 @@ void MainWindow::showEvent(QShowEvent *ev) {
     //this will do actual stuff later!!!
     if(isHash) {
         ui->structureUsed->setText("Structure in use: Hash Map");
-        initializeTable();
+        initialize();
     } else {
         ui->structureUsed->setText("Structure in use: B Tree");
+        initialize();
     }
     //hides the test label, comment out if things need to be tested
     ui->testLabel->hide();

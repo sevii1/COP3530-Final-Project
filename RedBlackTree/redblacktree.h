@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "C:\Users\1upjl\OneDrive\Documents\DSA Project 3\untitled\movie.h"
 
 using namespace std;
 
@@ -7,18 +8,10 @@ class RBT {
 public:
 
     struct TreeNode {
-        string NAME;
         int ID;
         int height;
 
-
-        string title_type;
-        string title;
-        string original_title;
-        int start_year;
-        int run_time;
-        string genres;
-        float average_rating;
+        Movie MOVIE;
 
         int color; //1 = red, 0 = black
 
@@ -29,9 +22,9 @@ public:
         TreeNode* left;
         TreeNode* right;
 
-        TreeNode(string name, int gatorid, TreeNode* parent) {
+        TreeNode(Movie movie, int gatorid, TreeNode* parent) {
 
-            NAME = name;
+            MOVIE  = movie;
             ID = gatorid;
 
             left = nullptr;
@@ -44,8 +37,8 @@ public:
     };
     RBT();
 
-    void insert(string name, string id);
-    TreeNode* insertHELPER(TreeNode* node, string nombre, int key, TreeNode* parent, int dir);
+    void insert(Movie movie, string id);
+    TreeNode* insertHELPER(TreeNode* node, Movie mov, int key, TreeNode* parent, int dir);
     TreeNode* rbtbalancing(TreeNode* node);
 
     TreeNode* rotateLeft(TreeNode* node);
