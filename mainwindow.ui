@@ -458,7 +458,7 @@
       <x>510</x>
       <y>100</y>
       <width>231</width>
-      <height>381</height>
+      <height>461</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="MovieBox"/>

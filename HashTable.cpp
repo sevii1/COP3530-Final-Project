@@ -1,30 +1,9 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
-#include <locale>
 #include <list>
 #include "HashTable.h"
 
-// Helper functions to handle conversions safely
-int safeStoi(const std::string& str, int defaultVal = 0) {
-    try {
-        return std::stoi(str);
-    } catch (...) {
-        return defaultVal;
-    }
-}
-
-float safeStof(const std::string& str, float defaultVal = 0.0f) {
-    try {
-        return std::stof(str);
-    } catch (...) {
-        return defaultVal;
-    }
-}
-
 HashTable::HashTable(){
-    cap = 200000;
+    cap = 150000;
     table = new std::list<Movie>[cap];
 }
 
@@ -36,10 +15,11 @@ int HashTable::hashFunction(Movie in) {
     int key = 0;
     for (int i = 0; i < in.title.length(); i++) {
         char letter = in.title.at(i);
-        key = (key * 31) + int(letter);
+        key = (key * 2) + int(letter);
     }
-    key = key % cap;
-    return key;
+    key += in.year + int(in.rating * 10);
+    int modKey = abs(key % cap);
+    return modKey;
 }
 
 void HashTable::insert(Movie val) {
@@ -47,7 +27,13 @@ void HashTable::insert(Movie val) {
     table[key].push_back(val);
 }
 
+int HashTable::getCap(){
+    return cap;
+}
+
+//former hash table function, all of this was either scrapped or reworked
 /*
+ * used in mainwindow.cpp
 std::unordered_map<std::string, Movie> loadMovies(const std::string& filename) {
     std::locale::global(std::locale("C"));  // Ensure correct numeric formatting
     std::ifstream file(filename);
@@ -86,8 +72,9 @@ std::unordered_map<std::string, Movie> loadMovies(const std::string& filename) {
     file.close();
     return movies;
 
-}*/
+}
 
+ * goes completely unused
 int main() {
     std::string filename = "Project3DatabaseMOVIESONLY.csv";  // Adjust the path as necessary
     auto movies = loadMovies(filename);
@@ -123,4 +110,4 @@ int main() {
     }
 
     return 0;
-}
+}*/

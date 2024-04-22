@@ -2,8 +2,13 @@
 #include "./ui_mainwindow.h"
 #include "HashTable.h"
 #include <string>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <locale>
 
 using namespace std;
+
 
 
 //default constructor and destructor were created with template
@@ -21,18 +26,78 @@ MainWindow::~MainWindow()
 }
 
 
+// Helper functions to handle conversions safely
+// Originally written by Waleed, Maddy had to move them to a different file
+int safeStoi(const std::string& str, int defaultVal = 0) {
+    try {
+        return std::stoi(str);
+    } catch (...) {
+        return defaultVal;
+    }
+}
+
+float safeStof(const std::string& str, float defaultVal = 0.0f) {
+    try {
+        return std::stof(str);
+    } catch (...) {
+        return defaultVal;
+    }
+}
+
+
+void MainWindow::initializeTable() {
+    //This function was primarily written by Waleed, minorly tweaked by Maddy to make it work with UI
+    std::locale::global(std::locale("C"));  // Ensure correct numeric formatting
+    string filename = R"(C:\Users\1upjl\OneDrive\Documents\DSA Project 3\untitled\Project3DatabaseMOVIESONLY.csv)";
+    std::ifstream file(filename);
+    std::string line, word;
+
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filename << std::endl;
+    }
+
+    std::getline(file, line);  // Skip the header line
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        Movie movie;
+        std::string genreWord;
+
+        std::getline(ss, word, ','); // Skip titleType
+        std::getline(ss, movie.title, ','); //Register the primary title as the one that saves
+        std::getline(ss, word, ','); // Read original title
+        std::getline(ss, word, ','); movie.year = safeStoi(word);
+        std::getline(ss, word, ','); movie.runtime = safeStoi(word);
+        std::getline(ss, genreWord, ',');
+        std::getline(ss, word, ','); movie.rating = safeStof(word);
+
+        // Parse genres
+        std::stringstream genreStream(genreWord);
+        while (std::getline(genreStream, word, ',')) {
+            movie.genre.push_back(word);
+        }
+
+        movieTable.insert(movie);  // Use primary title as key
+    }
+
+    file.close();
+}
+
 //this function runs once the main window is open
 void MainWindow::showEvent(QShowEvent *ev) {
     //initializes based on what structure it's using
     //this will do actual stuff later!!!
     if(isHash) {
         ui->structureUsed->setText("Structure in use: Hash Map");
+        initializeTable();
     } else {
         ui->structureUsed->setText("Structure in use: B Tree");
     }
     //hides the test label, comment out if things need to be tested
     ui->testLabel->hide();
 }
+
+
 
 //activates whenever search button is clicked
 void MainWindow::on_searchButton_clicked()
@@ -61,9 +126,24 @@ void MainWindow::on_searchButton_clicked()
     if(validateInput()) {
         //if all user input is valid, then go through the list of movies and put anything that meets criteria in there
         //this will very likely be changed later
+
+        //test code
+
+        /*
         for (int i = 0; i < movieList.size(); i++) {
             if(checkMovie(movieList[i])) {
                 foundList.push_back(movieList[i]);
+            }
+        }*/
+
+        if (isHash) {
+
+            for(int i = 0; i < movieTable.getCap(); i++) {
+                for(auto iter : movieTable.table[i]) {
+                    if(checkMovie(iter)) {
+                        foundList.push_back(iter);
+                    }
+                }
             }
         }
         //set index to 0 here instead of in function because I think I'm gonna try to make separate pages soon so I need to do it out of the function
@@ -202,7 +282,7 @@ void MainWindow::printMovies(vector<Movie> movies, int index) {
 
             //also for some reason it would always just go out of index if I put this in the while loop so I used a break instead
             //maybe fix this in a later commit
-            if (index == 5) {
+            if (index == 4) {
                 break;
             }
             index++;

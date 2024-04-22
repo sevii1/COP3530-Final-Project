@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "HashTable.h"
+
+#pragma once
 
 using namespace std;
 
@@ -18,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr, bool h = true);
     ~MainWindow();
+    void initializeTable();
     bool validateInput();
     bool checkMovie(Movie movie);
     bool checkDecade(int year);
@@ -34,5 +38,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     bool isHash;
+    HashTable movieTable;
 };
 #endif // MAINWINDOW_H
