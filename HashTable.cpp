@@ -34,11 +34,12 @@ HashTable::~HashTable(){
 
 int HashTable::hashFunction(Movie in) {
     int key = 0;
-    int iter = 0;
-    while (iter < 3) {
-        char ascii = in.title.at(in.title.size()-iter);
-        key = int(ascii) * (31^iter) + in.runtime;
+    for (int i = 0; i < in.title.length(); i++) {
+        char letter = in.title.at(i);
+        key = (key * 31) + int(letter);
     }
+    key = key % cap;
+    return key;
 }
 
 void HashTable::insert(Movie val) {
