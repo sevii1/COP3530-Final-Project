@@ -1,6 +1,7 @@
-#include <iostream>
-#include "redblacktree.h"
 
+//Was used for testing RB tree
+//does nothing now but github yells at me if I don't have it
+/*
 int main() {
     RBT tree;
 
@@ -74,3 +75,4 @@ int main() {
 
     return 0;
 }
+*/

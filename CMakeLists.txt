@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Project3DatabaseMOVIESONLY.csv
         RedBlackTree/redblacktree.cpp RedBlackTree/redblacktree.h
         movie.h
+        RedBlackTree/redblackmain.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET untitled APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
