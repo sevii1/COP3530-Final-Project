@@ -62,6 +62,7 @@ void MainWindow::initializeTable() {
         std::stringstream ss(line);
         Movie movie;
         std::string genreWord;
+        std::string tempGenre;
 
         std::getline(ss, word, ','); // Skip titleType
         std::getline(ss, movie.title, ','); //Register the primary title as the one that saves
@@ -69,6 +70,12 @@ void MainWindow::initializeTable() {
         std::getline(ss, word, ','); movie.year = safeStoi(word);
         std::getline(ss, word, ','); movie.runtime = safeStoi(word);
         std::getline(ss, genreWord, ',');
+        if(genreWord[0] == '"'){
+            std::getline(ss, tempGenre, '"');
+            genreWord.erase(0,1);
+            genreWord += "," + tempGenre;
+            std::getline(ss, word, ',');
+        }
         std::getline(ss, word, ','); movie.rating = safeStof(word);
 
         // Parse genres
