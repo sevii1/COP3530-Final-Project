@@ -11,14 +11,6 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-struct Movie {
-    string title;
-    int year;
-    int runtime;
-    vector<string> genre;
-    double rating;
-};
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

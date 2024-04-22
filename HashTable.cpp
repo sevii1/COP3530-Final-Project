@@ -2,18 +2,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <unordered_map>
-#include <vector>
 #include <locale>
-#include <algorithm>
-
-struct Movie {
-    std::string originalTitle;
-    int startYear = 0;
-    int runtimeMinutes = 0;
-    std::vector<std::string> genres;
-    float averageRating = 0.0;
-};
+#include <list>
+#include "HashTable.h"
 
 // Helper functions to handle conversions safely
 int safeStoi(const std::string& str, int defaultVal = 0) {
@@ -32,10 +23,28 @@ float safeStof(const std::string& str, float defaultVal = 0.0f) {
     }
 }
 
+HashTable::HashTable(){
+    cap = 150000;
+    table = new std::list<Movie>[cap];
+}
+
+HashTable::~HashTable(){
+    delete table;
+}
+
+int HashTable::hashFunction(Movie key) {
+
+}
+
+void HashTable::insert(Movie val) {
+    int key = hashFunction(val);
+    table[key].push_back(val);
+}
+
+/*
 std::unordered_map<std::string, Movie> loadMovies(const std::string& filename) {
     std::locale::global(std::locale("C"));  // Ensure correct numeric formatting
     std::ifstream file(filename);
-    std::unordered_map<std::string, Movie> movies;
     std::string line, word;
 
     if (!file.is_open()) {
@@ -70,7 +79,8 @@ std::unordered_map<std::string, Movie> loadMovies(const std::string& filename) {
 
     file.close();
     return movies;
-}
+
+}*/
 
 int main() {
     std::string filename = "Project3DatabaseMOVIESONLY.csv";  // Adjust the path as necessary
