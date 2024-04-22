@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "filepick.h"
 #include <string>
 
 using namespace std;
@@ -23,14 +22,15 @@ MainWindow::~MainWindow()
 
 //this function runs once the main window is open
 void MainWindow::showEvent(QShowEvent *ev) {
-    FilePick f;
-    f.exec();
     //initializes based on what structure it's using
+    //this will do actual stuff later!!!
     if(isHash) {
         ui->structureUsed->setText("Structure in use: Hash Map");
     } else {
         ui->structureUsed->setText("Structure in use: B Tree");
     }
+    //hides the test label, comment out if things need to be tested
+    ui->testLabel->hide();
 }
 
 //activates whenever search button is clicked

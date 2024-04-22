@@ -1,5 +1,6 @@
 #include "filepick.h"
 #include "ui_filepick.h"
+#include "mainwindow.h"
 
 FilePick::FilePick(QWidget *parent)
     : QDialog(parent)
@@ -14,14 +15,18 @@ FilePick::~FilePick()
 }
 
 
-bool FilePick::on_HM_clicked()
+void FilePick::on_HM_clicked()
 {
-    return true;
+    MainWindow *w= new MainWindow(nullptr, true);
+    w->show();
+    FilePick::close();
 }
 
 
-bool FilePick::on_BT_clicked()
+void FilePick::on_BT_clicked()
 {
-    return false;
+    MainWindow *w= new MainWindow(nullptr, false);
+    w->show();
+    FilePick::close();
 }
 

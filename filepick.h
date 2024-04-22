@@ -18,9 +18,9 @@ public:
 
 private slots:
 
-    bool on_HM_clicked();
+    void on_HM_clicked();
 
-    bool on_BT_clicked();
+    void on_BT_clicked();
 
 private:
     Ui::FilePick *ui;
