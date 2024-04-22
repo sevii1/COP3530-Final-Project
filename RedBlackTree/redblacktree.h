@@ -7,10 +7,7 @@ class RBT {
 public:
 
     struct TreeNode {
-        string NAME;
         int ID;
-        int height;
-
 
         string title_type;
         string title;
@@ -20,28 +17,35 @@ public:
         string genres;
         float average_rating;
 
+        
+
         int color; //1 = red, 0 = black
 
         TreeNode* parent;
-        TreeNode* grandparent;
-        TreeNode* uncle;
 
         TreeNode* left;
         TreeNode* right;
 
-        TreeNode(string name, int gatorid, TreeNode* parent) {
+        TreeNode(int ID, string title_type, string title, string original_title, int start_year, int run_time, string genres, float average_rating, TreeNode* parent) {
 
-            NAME = name;
-            ID = gatorid;
+            this-> ID = ID;
+            this->title_type = title_type;
+            this->title = title;
+            this->original_title = original_title;
+            this->start_year = start_year;
+            this->run_time = run_time;
+            this->genres = genres;
+            this->average_rating = average_rating;
+
+            this->parent = parent;
 
             left = nullptr;
             right = nullptr;
 
-            this->parent = parent;
-
             color = 1; //1 = red, 0 = black
         }
     };
+
     RBT();
 
     void insert(string name, string id);
@@ -51,7 +55,8 @@ public:
     TreeNode* rotateLeft(TreeNode* node);
     TreeNode* rotateRight(TreeNode* node);
 
-
+    TreeNode* RBTreeGetGrandparent(TreeNode* node);
+    TreeNode* RBTreeGetUnc(TreeNode* node);
 
     TreeNode* searchID(TreeNode* root, int key);
 
@@ -63,13 +68,8 @@ public:
 
     TreeNode* getRoot() const;
 
-    TreeNode* RBTreeGetGrandparent(TreeNode* node);
-
-    TreeNode* RBTreeGetUnc(TreeNode* node);
-
-
-
 private:
+
     TreeNode* root;
 
 };
