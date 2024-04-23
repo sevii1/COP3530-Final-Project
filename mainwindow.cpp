@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <locale>
+#include <chrono>
 
 using namespace std;
 
@@ -110,11 +111,19 @@ void MainWindow::showEvent(QShowEvent *ev) {
     //initializes based on what structure it's using
     //this will do actual stuff later!!!
     if(isHash) {
+        auto start = chrono::high_resolution_clock::now();
         ui->structureUsed->setText("Structure in use: Hash Map");
         initialize();
+        auto stop  = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+        cout << "Hashmap took " << duration.count() << " milliseconds to build." << endl;
     } else {
+        auto start = chrono::high_resolution_clock::now();
         ui->structureUsed->setText("Structure in use: Red/Black Tree");
         initialize();
+        auto stop  = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+        cout << "Red/Black tree took " << duration.count() << " milliseconds to build." << endl;
     }
     //hides the test label, comment out if things need to be tested
     ui->testLabel->hide();
@@ -160,7 +169,7 @@ void MainWindow::on_searchButton_clicked()
         }*/
 
         if (isHash) {
-
+            auto start = chrono::high_resolution_clock::now();
             for(int i = 0; i < movieTable.getCap(); i++) {
                 for(auto iter : movieTable.table[i]) {
                     if(checkMovie(iter)) {
@@ -168,8 +177,15 @@ void MainWindow::on_searchButton_clicked()
                     }
                 }
             }
+            auto stop = chrono::high_resolution_clock::now();
+            auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+            cout << "Hashmap took " << duration.count() << " milliseconds to search." << endl;
         } else {
+            auto start = chrono::high_resolution_clock::now();
             foundList = movieTree.traverseInOrder(ui->comboBox->currentText().toInt(), ui->minRuntime->displayText().toInt(), ui->maxRuntime->displayText().toInt(), ui->comboBox_2->currentText().toStdString(), ui->minRating->displayText().toDouble(), ui->maxRating->displayText().toDouble());
+            auto stop = chrono::high_resolution_clock::now();
+            auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+            cout << "Red/black tree took " << duration.count() << " milliseconds to search." << endl;
         }
         //set index to 0 here instead of in function because I think I'm gonna try to make separate pages soon so I need to do it out of the function
         //I think
