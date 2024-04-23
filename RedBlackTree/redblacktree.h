@@ -46,7 +46,7 @@ public:
 
     bool validMovie(TreeNode* node, int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating);
 
-    vector<Movie> printInOrder(int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating);
+    vector<Movie> traverseInOrder(int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating);
     void inOrder(TreeNode* head, int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating, vector<Movie> &movList);
 
     TreeNode* getRoot() const;

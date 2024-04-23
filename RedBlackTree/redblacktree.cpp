@@ -223,7 +223,7 @@ bool RBT::validMovie(TreeNode* node, int dec, int minRuntime, int maxRuntime, st
     return true;
 }
 
-vector<Movie> RBT::printInOrder(int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating) {
+vector<Movie> RBT::traverseInOrder(int dec, int minRuntime, int maxRuntime, string genre, double minRating, double maxRating) {
     vector<Movie> foundMovies;
     inOrder(root, dec, minRuntime, maxRuntime, genre, minRating, maxRating, foundMovies);
     return foundMovies;
