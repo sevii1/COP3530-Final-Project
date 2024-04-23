@@ -11,17 +11,22 @@ HashTable::~HashTable(){
     delete table;
 }
 
+//generates a unique hash key for every value inputted, based on title
 int HashTable::hashFunction(Movie in) {
     int key = 0;
     for (int i = 0; i < in.title.length(); i++) {
         char letter = in.title.at(i);
         key = (key * 2) + int(letter);
     }
+    //add year and rating on the end to ensure no duplicate titles get mismatched
     key += in.year + int(in.rating * 10);
     int modKey = abs(key % cap);
     return modKey;
 }
 
+//inserts the val (movie) into the list pointed to by the key in the array
+
+//done using separate chaining, if two movies do happen to share the same key they'll just be slapped at the end of a linked list together
 void HashTable::insert(Movie val) {
     int key = hashFunction(val);
     table[key].push_back(val);

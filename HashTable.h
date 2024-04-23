@@ -20,4 +20,7 @@ public:
     void display();
     std::list<Movie> *getTable();
     int getCap();
+    //I feel like rehashing is pretty unnecessary here, I already know that it's a constant size
+    //and that my function distributes things fairly evenly so I think rehashing would just worsen time complexity
+    //Maybe I'm wrong though, who knows
 };

@@ -1,4 +1,3 @@
-#include "mainwindow.h"
 #include "filepick.h"
 
 #include <QApplication>

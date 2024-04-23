@@ -113,7 +113,7 @@ void MainWindow::showEvent(QShowEvent *ev) {
         ui->structureUsed->setText("Structure in use: Hash Map");
         initialize();
     } else {
-        ui->structureUsed->setText("Structure in use: B Tree");
+        ui->structureUsed->setText("Structure in use: Red/Black Tree");
         initialize();
     }
     //hides the test label, comment out if things need to be tested
@@ -169,7 +169,7 @@ void MainWindow::on_searchButton_clicked()
                 }
             }
         } else {
-            foundList = movieTree.printInOrder(ui->comboBox->currentText().toInt(), ui->minRuntime->displayText().toInt(), ui->maxRuntime->displayText().toInt(), ui->comboBox_2->currentText().toStdString(), ui->minRating->displayText().toDouble(), ui->maxRating->displayText().toDouble());
+            foundList = movieTree.traverseInOrder(ui->comboBox->currentText().toInt(), ui->minRuntime->displayText().toInt(), ui->maxRuntime->displayText().toInt(), ui->comboBox_2->currentText().toStdString(), ui->minRating->displayText().toDouble(), ui->maxRating->displayText().toDouble());
         }
         //set index to 0 here instead of in function because I think I'm gonna try to make separate pages soon so I need to do it out of the function
         //I think

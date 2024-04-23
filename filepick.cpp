@@ -2,6 +2,8 @@
 #include "ui_filepick.h"
 #include "mainwindow.h"
 
+
+//This screen lets the user (me) select which structure I want to test with
 FilePick::FilePick(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::FilePick)

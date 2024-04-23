@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//this entire file just exists so that the RB tree and hash map can use the same struct
 struct Movie {
     string title;
     int year;
